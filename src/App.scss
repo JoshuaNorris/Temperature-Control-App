@@ -1,3 +1,17 @@
+// Variables
+$background-color: #f0f0f0;
+$primary-color: #3498db;
+$button-color: #2ecc71;
+$button-hover-color: darken($button-color, 5%);
+$text-color: #111;
+
+// Mixin for reusable styles
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 html {
     box-sizing: border-box;
 }
@@ -9,19 +23,94 @@ body {
     overflow: hidden;
 }
 
-.temperature-container {
-    position: absolute;
-    top:0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-    width: 350px;
-    height: 450px;
-    background-color: blue;
 
-    .button-container {
-        position: relative;
-        top: 50%;
+.background {
+    background-color: $background-color;
+    height: 100vh;
+    @include flex-center;
+}
+
+
+.temperature-container {
+    width: 300px;
+    height: 400px;
+    background-color: $primary-color;
+    border-radius: 25px;
+    position: relative;
+    padding: 20px;
+    color: $text-color;
+    @include flex-center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    box-shadow:
+        2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
+        6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
+        12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+        22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
+        41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
+        100px 100px 80px rgba(0, 0, 0, 0.07);
+}
+
+.temperature-reading {
+    display: flex;
+    justify-content: center;
+    margin-top: 80px;
+    font-weight: bold;
+    margin-bottom: auto;
+
+    .icon {
+        height: 30px;
+        width : 30px;
+    }
+
+    .temperature {
+        font-size: 100px;
+        padding-left: 30px;
+    }
+}
+
+// Button container styling
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    width: 100%;
+    position: absolute;
+    bottom: 70px; // Positions it towards the bottom of the container
+
+    label {
+        font-size: 35px;;
+    }
+}
+
+// Button styling
+button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: $button-color;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    @include flex-center;
+
+    box-shadow:
+        0px 1px 2.3px rgba(0, 0, 0, 0.028),
+        0px 3.4px 7.8px rgba(0, 0, 0, 0.042),
+        0px 15px 35px rgba(0, 0, 0, 0.07);
+
+    &:hover {
+        background-color: $button-hover-color;
+    }
+
+    &:active {
+        transform: scale(0.99);
+        box-shadow:
+            0px 0.3px 2.3px rgba(0, 0, 0, 0.028),
+            0px 1.1px 7.8px rgba(0, 0, 0, 0.042),
+            0px 5px 35px rgba(0, 0, 0, 0.07);
     }
 }
